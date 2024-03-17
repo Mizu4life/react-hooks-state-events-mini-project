@@ -17,12 +17,16 @@ function App() {
     setTaskList([...taskList, newTask]);
   }
 
+  function onTaskDelete(deletedTask){
+    setTaskList (taskList.filter(task => task !== deletedTask));
+  }
+
   return ( 
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter categories={CATEGORIES} setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory}/>
       <NewTaskForm onTaskFormSubmit ={onTaskFormSubmit} categories={CATEGORIES}/>
-      <TaskList tasks={taskList} selectedCategory={selectedCategory} onTaskDelete={setTaskList}/>
+      <TaskList tasks={taskList} selectedCategory={selectedCategory} handleDelete={onTaskDelete}/>
     </div>
   );
 } 
